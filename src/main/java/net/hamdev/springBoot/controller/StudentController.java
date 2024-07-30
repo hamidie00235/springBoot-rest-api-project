@@ -53,7 +53,9 @@ public class StudentController {
 
     }
     // spring boot REST API that handles HTTP Post Request
-    // @PostMapping and @RequestBody
+
+    // @PostMapping and @RequestBody (to bin json to java objet)
+
     // http://localhost:8080/students/create
     @PostMapping("students/create")
     @ResponseStatus(HttpStatus.CREATED)
