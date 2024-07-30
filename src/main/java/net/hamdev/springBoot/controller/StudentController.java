@@ -54,8 +54,10 @@ public class StudentController {
     }
     // spring boot REST API that handles HTTP Post Request
     // @PostMapping and @RequestBody
+    // http://localhost:8080/students/create
     @PostMapping("students/create")
     @ResponseStatus(HttpStatus.CREATED)
+
     public Student createStudent(@RequestBody Student student){
         System.out.println(student.getId());
         System.out.println(student.getFirstName());
