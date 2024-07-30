@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("students")
 public class StudentController {
 
     // http://localhost:8080/student
@@ -41,7 +42,7 @@ public class StudentController {
     // {id} url template variable
     // http://localhost:8080/students/1/hamidie/ahmat
 
-    @GetMapping("students/{id}/{first-name}/{last-name}")
+    @GetMapping("{id}/{first-name}/{last-name}")
     public ResponseEntity<Student >studentPathVariable( @PathVariable("id") int studentID ,
             @PathVariable("first-name") String firstName,
            @PathVariable("last-name") String lastName){
@@ -51,7 +52,7 @@ public class StudentController {
 
     // Spring Boot Rest Api with request param
     // http://localhost:8080/students/query?id=1&firstName=hamidie&lastName=hissein
-    @GetMapping("students/query")
+    @GetMapping("query")
     public ResponseEntity<Student> studentRequestVariable(@RequestParam int id,
                                           @RequestParam String firstName,
                                          @RequestParam String lastName){
@@ -64,7 +65,7 @@ public class StudentController {
     // @PostMapping and @RequestBody (to bin json to java objet)
 
     // http://localhost:8080/students/create
-    @PostMapping("students/create")
+    @PostMapping("create")
     //@ResponseStatus(HttpStatus.CREATED)
 
     public ResponseEntity <Student> createStudent(@RequestBody Student student){
@@ -74,14 +75,14 @@ public class StudentController {
         return new ResponseEntity<>(student,HttpStatus.CREATED);
     }
     // spring boot REST API that handles http put request -updating existing resource
-    @PutMapping("students/{id}/update")
+    @PutMapping("{id}/update")
     public ResponseEntity<Student> updatingStudent(@RequestBody Student student,@PathVariable("id") int studentId){
         System.out.println(student.getFirstName());
         System.out.println(student.getLastName());
         return ResponseEntity.ok(student) ;
     }
     // Spring boot REST API that handles HTTP Delete request -deleting the existing resource
-    @DeleteMapping("students/{id}/delete")
+    @DeleteMapping("{id}/delete")
     public ResponseEntity<String> deletingStudent(@PathVariable ("id") int studentId){
         System.out.println(studentId);
         return ResponseEntity.ok("Student deleted successfully!");
